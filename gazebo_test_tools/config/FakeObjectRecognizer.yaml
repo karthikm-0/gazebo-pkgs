@@ -7,7 +7,7 @@ recognize_object_service: "/gazebo_test_tools/recognize_object"
 objects_topic: "/gazebo_objects"
 
 # Rate at which to publish collision messages
-publish_recognition_rate: 10
+publish_recognition_rate: 50
 
 # service name on which object_msgs/ObjectInfo.srv object information
 # can be requested.
