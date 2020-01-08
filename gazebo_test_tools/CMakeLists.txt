@@ -96,6 +96,7 @@ add_library(fake_object_recognizer
 
 ## Declare a cpp executable
 add_executable(cube_spawner src/cube_spawner_node.cpp)
+add_executable(spawn_cubes src/spawn_cubes_node.cpp)
 add_executable(fake_object_recognizer_node src/fake_object_recognizer_node.cpp)
 add_executable(fake_object_recognizer_cmd test/fake_object_recognizer_cmd.cpp)
 add_executable(set_gazebo_physics_client src/SetGazeboPhysicsClient.cpp)
@@ -104,6 +105,7 @@ add_executable(set_gazebo_physics_client src/SetGazeboPhysicsClient.cpp)
 ## as an example, message headers may need to be generated before nodes
 add_dependencies(gazebo_test_tools ${catkin_EXPORTED_TARGETS})
 add_dependencies(cube_spawner ${catkin_EXPORTED_TARGETS})
+add_dependencies(spawn_cubes $(catkin catkin_EXPORTED_TARGETS))
 add_dependencies(set_gazebo_physics_client ${catkin_EXPORTED_TARGETS})
 
 add_dependencies(fake_object_recognizer gazebo_test_tools_generate_messages_cpp)
@@ -123,6 +125,11 @@ target_link_libraries(gazebo_test_tools
 )
 
 target_link_libraries(cube_spawner
+   gazebo_test_tools
+   ${catkin_LIBRARIES}
+)
+
+target_link_libraries(spawn_cubes
    gazebo_test_tools
    ${catkin_LIBRARIES}
 )
@@ -152,7 +159,7 @@ target_link_libraries(fake_object_recognizer_cmd
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
 
 ## Mark executables and/or libraries for installation
-install(TARGETS gazebo_test_tools cube_spawner fake_object_recognizer set_gazebo_physics_client fake_object_recognizer_node fake_object_recognizer_cmd
+install(TARGETS gazebo_test_tools cube_spawner spawn_cubes fake_object_recognizer set_gazebo_physics_client fake_object_recognizer_node fake_object_recognizer_cmd
    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
