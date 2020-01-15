@@ -145,7 +145,7 @@ void GazeboCubeSpawner::spawnPrimitive(const std::string& name, const bool doCub
             </contact>\
         </surface>";
       s<<"</collision>\
-          <gravity>0</gravity>\
+          <gravity>1</gravity>\
           <visual name='visual'>";
       s<<"<geometry>"<<geometryString;
       s<<"</geometry>\
