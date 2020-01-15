@@ -10,5 +10,8 @@ world_name: "default"
 world_plugins:
     - name: gazebo_object_info
       file: libgazebo_object_info.so
+
+    - name: gazebo_ros_link_attacher
+      file: libgazebo_ros_link_attacher.so
     # - name: gazebo_map_publisher
     #  file: libgazebo_map_publisher.so

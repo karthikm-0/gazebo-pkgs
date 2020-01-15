@@ -113,6 +113,11 @@ void GazeboCubeSpawner::spawnPrimitive(const std::string& name, const bool doCub
     s<<"<collision name='collision'>\
         <geometry>"<<geometryString;
     s<<"</geometry>";
+    s<<"<surface>\
+          <contact>\
+            <collide_bitmask>0x01</collide_bitmask>\
+          </contact>\
+        </surface>";
     if (do_surface)
         s<<"<surface>\
             <friction>\
@@ -140,6 +145,7 @@ void GazeboCubeSpawner::spawnPrimitive(const std::string& name, const bool doCub
             </contact>\
         </surface>";
       s<<"</collision>\
+          <gravity>0</gravity>\
           <visual name='visual'>";
       s<<"<geometry>"<<geometryString;
       s<<"</geometry>\
