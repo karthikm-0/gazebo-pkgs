@@ -1,0 +1,11 @@
+# arguments to spawn cubes from Unity
+# name
+string name
+float32 x
+float32 y
+float32 z
+
+---
+
+# Output of the service request to spawn the cube
+bool success

@@ -42,13 +42,13 @@ find_package(gazebo REQUIRED)
 ## Generate services in the 'srv' folder
 add_service_files(
   DIRECTORY srv
-  FILES RecognizeGazeboObject.srv
+  FILES RecognizeGazeboObject.srv SpawnCubesUnity.srv
 )
 
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
    DEPENDENCIES
-   object_msgs
+   object_msgs std_msgs
 )
 
 ###################################
@@ -100,12 +100,14 @@ add_executable(spawn_cubes src/spawn_cubes_node.cpp)
 add_executable(fake_object_recognizer_node src/fake_object_recognizer_node.cpp)
 add_executable(fake_object_recognizer_cmd test/fake_object_recognizer_cmd.cpp)
 add_executable(set_gazebo_physics_client src/SetGazeboPhysicsClient.cpp)
+add_executable(spawn_cubes_unity src/spawn_cubes_unity.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
 add_dependencies(gazebo_test_tools ${catkin_EXPORTED_TARGETS})
 add_dependencies(cube_spawner ${catkin_EXPORTED_TARGETS})
-add_dependencies(spawn_cubes $(catkin catkin_EXPORTED_TARGETS))
+add_dependencies(spawn_cubes $(catkin_EXPORTED_TARGETS))
+add_dependencies(spawn_cubes_unity $(catkin_EXPORTED_TARGETS))
 add_dependencies(set_gazebo_physics_client ${catkin_EXPORTED_TARGETS})
 
 add_dependencies(fake_object_recognizer gazebo_test_tools_generate_messages_cpp)
@@ -130,6 +132,11 @@ target_link_libraries(cube_spawner
 )
 
 target_link_libraries(spawn_cubes
+   gazebo_test_tools
+   ${catkin_LIBRARIES}
+)
+
+target_link_libraries(spawn_cubes_unity
    gazebo_test_tools
    ${catkin_LIBRARIES}
 )
